@@ -124,7 +124,7 @@ body,
 }
 body {
   background: #eee;
-  font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 .outer {
@@ -308,7 +308,7 @@ body {
   font-weight: bold;
 }
 #header {
-  height: 300px;
+  height: 325px;
   position: relative;
   border-bottom: 1px solid #ddd;
 }
@@ -334,65 +334,138 @@ body {
   background: -ms-linear-gradient(transparent, rgba(0,0,0,0.2));
   background: linear-gradient(transparent, rgba(0,0,0,0.2));
 }
+#banner-whizbang {
+  width: 100%;
+  height: 100%;
+}
 #header-outer {
   height: 100%;
   position: relative;
+  padding: 0;
 }
 #header-inner {
-  position: relative;
+  z-index: 100;
   overflow: hidden;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 #banner {
   position: absolute;
+  background: #555;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("images/banner.jpg") center #000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   z-index: -1;
 }
 #header-title {
-  text-align: center;
-  height: 40px;
+  text-align: left;
+  height: 90px;
   position: absolute;
-  top: 50%;
+  top: 95px;
   left: 0;
-  margin-top: -20px;
+  margin-top: -45px;
+}
+.header-title-text {
+  display: block;
+  float: left;
+  margin-left: 10px;
+}
+.header-title-graphic {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  display: block;
+  float: left;
+  width: 300px;
+  height: 155px;
+  background: url("images/okcjs-header-logo-dshadow.png") center transparent;
 }
 #logo,
 #subtitle {
   text-decoration: none;
   color: #fff;
   font-weight: 300;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 9px rgba(0,0,0,0.9);
 }
 #logo {
-  font-size: 40px;
-  line-height: 40px;
+  font-size: 90px;
+  line-height: 90px;
   letter-spacing: 2px;
 }
+@media screen and (max-width: 479px) {
+  #logo {
+    font-size: 90px;
+    line-height: 90px;
+  }
+}
+@media screen and (min-width: 768px) {
+  #logo {
+    font-size: 54px;
+    line-height: 54px;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  #logo {
+    font-size: 90px;
+    line-height: 90px;
+  }
+}
+@media screen and (min-width: 961px) {
+  #logo {
+    font-size: 90px;
+    line-height: 90px;
+  }
+}
 #subtitle {
-  font-size: 16px;
-  line-height: 16px;
   letter-spacing: 1px;
 }
+@media screen and (min-width: 768px) {
+  #subtitle {
+    font-size: 20.4px;
+    line-height: 20.4px;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  #subtitle {
+    font-size: 20.4px;
+    line-height: 20.4px;
+  }
+}
+@media screen and (max-width: 479px) {
+  #subtitle {
+    font-size: 34px;
+    line-height: 34px;
+  }
+}
+@media screen and (min-width: 961px) {
+  #subtitle {
+    font-size: 34px;
+    line-height: 34px;
+  }
+}
 #subtitle-wrap {
-  margin-top: 16px;
+  margin-top: 34px;
 }
 #main-nav {
   float: left;
-  margin-left: -15px;
+  margin-left: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .nav-icon,
 .main-nav-link {
   float: left;
-  color: #fff;
-  opacity: 0.6;
+  color: #000;
+  opacity: 0.8;
   text-decoration: none;
-  text-shadow: 0 1px rgba(0,0,0,0.2);
   -webkit-transition: opacity 0.2s;
   -moz-transition: opacity 0.2s;
   -ms-transition: opacity 0.2s;
@@ -416,7 +489,9 @@ body {
 }
 .main-nav-link {
   font-weight: 300;
-  letter-spacing: 1px;
+  letter-spacing: 1;
+  background: rgba(255,255,255,0.6);
+  padding: 20px 15px;
 }
 @media screen and (max-width: 479px) {
   .main-nav-link {
@@ -437,6 +512,7 @@ body {
 #sub-nav {
   float: right;
   margin-right: -15px;
+  margin-top: 45px;
 }
 #nav-rss-link:before {
   content: "\f09e";
@@ -446,7 +522,7 @@ body {
 }
 #search-form-wrap {
   position: absolute;
-  top: 15px;
+  top: 60px;
   width: 150px;
   height: 30px;
   right: -150px;
@@ -482,7 +558,7 @@ body {
   background: none;
   color: #555;
   width: 100%;
-  font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
   outline: none;
 }
 .search-form-input::-webkit-search-results-decoration,
@@ -549,11 +625,11 @@ body {
   transition: color 0.2s;
 }
 a.article-title:hover {
-  color: #258fb8;
+  color: #4000ad;
 }
 .article-entry {
   color: #555;
-  padding: 0 20px;
+  padding: 20px 20px;
 }
 .article-entry:before,
 .article-entry:after {
@@ -586,7 +662,7 @@ a.article-title:hover {
   margin: 1.1em 0;
 }
 .article-entry a {
-  color: #258fb8;
+  color: #4000ad;
   text-decoration: none;
 }
 .article-entry a:hover {
@@ -631,7 +707,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -685,10 +761,10 @@ a.article-title:hover {
   text-decoration: none;
 }
 .article-more-link a:hover {
-  background: #258fb8;
+  background: #4000ad;
   color: #fff;
   text-decoration: none;
-  text-shadow: 0 1px #1e7293;
+  text-shadow: 0 1px #33008a;
 }
 .article-footer {
   font-size: 0.85em;
@@ -836,7 +912,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
   color: #555;
   outline: none;
@@ -951,7 +1027,7 @@ a.article-title:hover {
   margin: 50px 0;
 }
 #comments a {
-  color: #258fb8;
+  color: #4000ad;
 }
 .archives-wrap {
   margin: 50px 0;
@@ -986,6 +1062,13 @@ a.article-title:hover {
     column-count: 3;
   }
 }
+@media screen and (min-width: 961px) {
+  .archives {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+}
 .archive-article {
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
@@ -1007,7 +1090,7 @@ a.article-title:hover {
   line-height: 1.6em;
 }
 .archive-article-title:hover {
-  color: #258fb8;
+  color: #4000ad;
 }
 .archive-article-footer {
   margin-top: 1em;
@@ -1042,8 +1125,6 @@ a.article-title:hover {
 #page-nav a,
 #page-nav span {
   padding: 10px 20px;
-  line-height: 1;
-  height: 2ex;
 }
 #page-nav a {
   color: #999;
@@ -1075,13 +1156,13 @@ a.article-title:hover {
   color: #ddd;
 }
 #footer {
-  background: #262a30;
+  background: #555;
   padding: 50px 0;
   border-top: 1px solid #ddd;
   color: #999;
 }
 #footer a {
-  color: #258fb8;
+  color: #4000ad;
   text-decoration: none;
 }
 #footer a:hover {
@@ -1159,9 +1240,6 @@ a.article-title:hover {
 .article-entry .highlight .line {
   height: 22.400000000000002px;
 }
-.article-entry .highlight .line.marked {
-  background: #515151;
-}
 .article-entry .gist {
   margin: 0 -20px;
   border-style: solid;
@@ -1195,14 +1273,14 @@ a.article-title:hover {
 .article-entry .gist .gist-file .gist-meta {
   background: #2d2d2d;
   color: #999;
-  font: 0.85em -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 0.85em "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: 0 0;
   padding: 0;
   margin-top: 1em;
   margin-left: 20px;
 }
 .article-entry .gist .gist-file .gist-meta a {
-  color: #258fb8;
+  color: #4000ad;
   font-weight: normal;
 }
 .article-entry .gist .gist-file .gist-meta a:hover {
@@ -1272,7 +1350,7 @@ pre .javascript .function {
     width: 280px;
     height: 100%;
     background: #191919;
-    border-right: 1px solid #fff;
+    border-right: 1px solid #fefefe;
   }
 }
 @media screen and (max-width: 479px) {
@@ -1288,6 +1366,34 @@ pre .javascript .function {
   }
 }
 @media screen and (min-width: 768px) {
+  .header-title-graphic {
+    display: block;
+  }
+}
+@media screen and (min-width: 961px) {
+  .header-title-graphic {
+    display: block;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .header-title-graphic {
+    display: none;
+  }
+}
+@media screen and (max-width: 479px) {
+  .header-title-graphic {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  #sidebar {
+    display: inline;
+    float: left;
+    width: 23.333333333333332%;
+    margin: 0 0.833333333333333%;
+  }
+}
+@media screen and (min-width: 961px) {
   #sidebar {
     display: inline;
     float: left;
@@ -1309,7 +1415,7 @@ pre .javascript .function {
   border-radius: 3px;
 }
 .widget a {
-  color: #258fb8;
+  color: #4000ad;
   text-decoration: none;
 }
 .widget a:hover {
@@ -1370,5 +1476,4 @@ pre .javascript .function {
 }
 .tagcloud a {
   margin-right: 5px;
-  display: inline-block;
 }
