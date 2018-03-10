@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>hexo配合Github创建博客.md | 叔叔和笑笑的博客</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="叔叔和笑笑的博客">
+
+  
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">叔叔和笑笑的博客</h1>
+            <h2 class="blog-description"></h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2018-03-10T12:59:38.000Z" itemprop="datePublished">
+          2018-03-10
+      </time>
+    
+    
+    | 
+    <a href='/tags/技巧/'>技巧</a>
+    
+    
+</span>
+    <h1 class="post-title">hexo配合Github创建博客.md</h1>
+    <section class="post-content">
+      <h4 id="使用-Hexo-GitHub-可以轻松搞出一个好看的博客"><a href="#使用-Hexo-GitHub-可以轻松搞出一个好看的博客" class="headerlink" title="使用 Hexo + GitHub 可以轻松搞出一个好看的博客"></a>使用 Hexo + GitHub 可以轻松搞出一个好看的博客</h4><p>以下是步骤。</p>
+<ol>
+<li>进入一个安全的目录，比如 cd ~/Desktop 或者 cd ~/Documents，别在根目录 / 瞎搞。以后所有的教程第一步都是「进入一个安全的目录，别在根目录瞎搞」，只有 ~ 里面的目录是你能碰的！</li>
+<li>在 GitHub 上新建一个空 repo，repo 名称是「你的用户名.github.io」（请将你的用户名替换成真正的用户名）</li>
+<li>npm install -g hexo-cli，安装 Hexo</li>
+<li>hexo init myBlog</li>
+<li>cd myBlog</li>
+<li>npm i</li>
+<li>hexo new 开博大吉，你会看到一个 md 文件的路径</li>
+<li>_config.yml，这个文件用于编辑网站配置<ol>
+<li>把第 6 行的 title 改成你想要的名字</li>
+<li>把第 9 行的 author 改成你的大名</li>
+<li>把最后一行的 type 改成 type: git</li>
+<li>在最后一行后面新增一行，左边与 type 平齐，加上一行 repo: 仓库地址 （请将仓库地址改为「你的用户名.github.io」对应的仓库地址，仓库地址以 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>: 开头你知道吧？不知道？不知道的话现在你知道了）</li>
+<li>第 4 步的 repo: 后面有个空格，不要眼瞎。</li>
+</ol>
+</li>
+<li>npm install hexo-deployer-git –save，安装 git 部署插件</li>
+<li>hexo deploy</li>
+<li>进入「你的用户名.github.io」对应的 repo，打开 GitHub Pages 功能，如果已经打开了，就直接点击预览链接</li>
+<li>你现在应该看到了你的博客！</li>
+</ol>
+<hr>
+<h4 id="第二篇博客"><a href="#第二篇博客" class="headerlink" title="第二篇博客"></a>第二篇博客</h4><ol>
+<li>hexo new 第二篇博客</li>
+<li>复制显示的路径，使用 start 路径 来编辑它</li>
+<li>hexo generate</li>
+<li>hexo deploy</li>
+<li>去看你的博客，应该能看到第二篇博客了</li>
+</ol>
+<hr>
+<h4 id="换主题"><a href="#换主题" class="headerlink" title="换主题"></a>换主题</h4><ol>
+<li><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">https://github.com/hexojs/hexo/wiki/Themes</a> 上面有主题合集</li>
+<li>随便找一个主题，进入主题的 GitHub 首页，比如我找的是 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a></li>
+<li>复制它的 SSH 地址或 HTTPS 地址，假设地址为 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:iissnan/hexo-theme-next.git</li>
+<li>cd themes</li>
+<li>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:iissnan/hexo-theme-next.git</li>
+<li>cd ..</li>
+<li>将 _config.yml 的第 75 行改为 theme: hexo-theme-next，保存</li>
+<li>hexo generate</li>
+<li>hexo deploy</li>
+<li>等一分钟，然后刷新你的博客页面，你会看到一个新的外观。如果不喜欢这个主题，就回到第 1 步，重选一个主题。</li>
+</ol>
+<hr>
+<h4 id="上传源代码"><a href="#上传源代码" class="headerlink" title="上传源代码"></a>上传源代码</h4><p>注意「你的用户名.github.io」上保存的只是你的博客，并没有保存「生成博客的程序代码」，你需要再创建一个名为 blog-generator 的空仓库，用来保存 myBlog 里面的「生成博客的程序代码」。</p>
+<ol>
+<li>在 GitHub 创建 blog-generator 空仓库<br>图片<br>图片</li>
+<li>按照截图中的命令执行即可，记住，别 TMD 用 HTTPS 地址。</li>
+</ol>
+<p>这样一来，你的博客发布在了「你的用户名.github.io」而你的「生成博客的程序代码」发布在了 blog-generator。所有数据万无一失，你就不会因为误删 myBlog 目录而痛哭了。</p>
+<p>以后每次 hexo deploy 完之后，博客就会更新；然后你还要要 add / commit /push 一下「生成博客的程序代码」，以防万一。</p>
+<p>这个 blog-generator 就是用来生成博客的程序，而「你的用户名.github.io」仓库就是你的博客页面。</p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>squall1744</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://yoursite.com/2018/03/10/hexo配合Github创建博客/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/10/hexo配合Github创建博客/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/10/hexo配合Github创建博客/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2018/03/10/命令行及git/">
+        命令行及git →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">叔叔和笑笑的博客</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>
