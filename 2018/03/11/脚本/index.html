@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>脚本 | 叔叔和笑笑的博客</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="叔叔和笑笑的博客">
+
+  
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">叔叔和笑笑的博客</h1>
+            <h2 class="blog-description"></h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2018-03-11T14:42:09.000Z" itemprop="datePublished">
+          2018-03-11
+      </time>
+    
+    
+    | 
+    <a href='/tags/学习笔记/'>学习笔记</a>
+    
+    
+</span>
+    <h1 class="post-title">脚本</h1>
+    <section class="post-content">
+      <h2 id=""><a href="#" class="headerlink" title=""></a><br></h2><h3 id="Bash脚本"><a href="#Bash脚本" class="headerlink" title="Bash脚本"></a>Bash脚本</h3><hr>
+<h4 id="创建一个脚本"><a href="#创建一个脚本" class="headerlink" title="创建一个脚本"></a>创建一个脚本</h4><ol>
+<li><p>随便找个地方建立个文件, 假设在~/local里吧</p>
+<ol>
+<li><code>mkdir ~/local</code></li>
+<li><code>cd ~/local</code></li>
+<li><code>touch demo</code></li>
+</ol>
+</li>
+<li><p>编辑demo</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir test</span><br><span class="line">cd test</span><br><span class="line">mkdir css js</span><br><span class="line">touch index.html css/style.css js/main.js</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给demo添加执行权限<code>chmod +x demo</code></p>
+</li>
+<li><p>任意位置执行<code>sh ~/local/demo</code>即可运行脚本</p>
+</li>
+<li><p>在PATH中添加<code>~/local</code></p>
+<ol>
+<li><code>cd ~/local</code></li>
+<li><code>pwd</code>得到绝对路径</li>
+<li>创建~/.bashrc文件并且在里面添加一行<code>export PATH=&quot;local的绝对路径:$PATH&quot;</code> </li>
+<li><code>source ~/.bashrc</code> 每次设置完了需要source一下才能生效</li>
+</ol>
+</li>
+<li><p>这时候直接输入<code>demo</code>就会运行脚本了, 不需要再输入<code>sh ~/local/demo</code></p>
+</li>
+</ol>
+<hr>
+<h4 id="PATH作用"><a href="#PATH作用" class="headerlink" title="PATH作用"></a>PATH作用</h4><p>我们<code>echo $PATH</code>一下, 会发现, PATH是保存命令文件的路径</p>
+<p>路径用<code>:</code>隔开<br><img src="https://upload-images.jianshu.io/upload_images/8412690-531c6c69ae84d3ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PATH"></p>
+<h4 id="Linux命令是文件"><a href="#Linux命令是文件" class="headerlink" title="Linux命令是文件"></a>Linux命令是文件</h4><p>首先我们要明确一点, 命令实际是一个文件, 当我们运行一个命令时, 比如ls, 系统会一次在这些路径中找是否有ls这个文件, 直到找到为止, 找不到就提示没有这个命令,这里介绍几个跟环境变量相关的命令命令<br><code>echo $PATH</code>查看$PATH路径<br><code>chmod -X 文件名</code>给文件添加X权限<br><code>pwd</code>显示当前路径<br><code>type 命令</code>显示命令路径<br><code>which 命令</code>显示命令的类型<br>我们可以用<code>type ls</code>看看我们ls文件在系统的那里存着</p>
+<hr>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p>我们可以给脚本传参, 假设我们创建了一个demo脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir $1</span><br><span class="line">cd $1</span><br><span class="line">mkdir css js</span><br><span class="line">touch index.html css/style.css js/main.js</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></p>
+<p>$1就表示我们运行脚本时候传进去的第一个参数<br>为什么会知道呢<br>Google 出来的 <a href="http://lmgtfy.com/?q=bash+first+param" title="null" target="_blank" rel="noopener">http://lmgtfy.com/?q=bash+first+param</a><br>用百度也行 <a href="http://www.baidu-x.com/?q=bash+%E7%AC%AC%E4%B8%80%E4%B8%AA+%E5%8F%82%E6%95%B0" title="null" target="_blank" rel="noopener">http://www.baidu-x.com/?q=bash+%E7%AC%AC%E4%B8%80%E4%B8%AA+%E5%8F%82%E6%95%B0</a></p>
+<hr>
+<h4 id="判断目录是否存在"><a href="#判断目录是否存在" class="headerlink" title="判断目录是否存在"></a>判断目录是否存在</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if [ -d $1 ]; then</span><br><span class="line">  echo &apos;$1 has exist&apos;</span><br><span class="line">  exit</span><br><span class="line">else</span><br><span class="line">  mkdir $1</span><br><span class="line">  cd $1</span><br><span class="line">  mkdir css js</span><br><span class="line">  touch index.html css/style.css js/main.js</span><br><span class="line">  exit</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>这里面比较难理解, 先说一下<code>[-d $1]</code>的意思<br><code>-d $1</code> 表示文件$1</p>
+<p>bash的判断通过下面的语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if[]; then</span><br><span class="line">  ...</span><br><span class="line">else</span><br><span class="line">  ...</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
+<p>我们怎么会知道<code>-d $1</code>可以判断目录是否存在？<br>Google出来的 <a href="http://lmgtfy.com/?q=bash+dir+exists" title="null" target="_blank" rel="noopener">http://lmgtfy.com/?q=bash+dir+exists</a></p>
+<hr>
+<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><p><code>exit 0</code>表示没有错误<br><code>exit 1</code>表示错误代码为 1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">demo &amp;&amp; echo &apos;结束&apos;</span><br></pre></td></tr></table></figure></p>
+<p>只有在 demo 成功时，才会执行<code>echo &#39;结束&#39;</code></p>
+<hr>
+<h3 id="Node-js-写脚本"><a href="#Node-js-写脚本" class="headerlink" title="Node.js 写脚本"></a>Node.js 写脚本</h3><hr>
+<ol>
+<li><p>创建 ~/local/jsdemo.js，内容如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dirName = process.argv[<span class="number">2</span>] <span class="comment">// 你传的参数是从第 2 个开始的</span></span><br><span class="line"></span><br><span class="line">fs.mkdirSync(<span class="string">"./"</span> + dirName) <span class="comment">// mkdir $1</span></span><br><span class="line">process.chdir(<span class="string">"./"</span> + dirName) <span class="comment">// cd $1</span></span><br><span class="line">fs.mkdirSync(<span class="string">'css'</span>) <span class="comment">// mkdir css</span></span><br><span class="line">fs.mkdirSync(<span class="string">'js'</span>) <span class="comment">// mkdir js</span></span><br><span class="line"></span><br><span class="line">fs.writeFileSync(<span class="string">"./index.html"</span>, <span class="string">""</span>)</span><br><span class="line">fs.writeFileSync(<span class="string">"css/style.css"</span>, <span class="string">""</span>)</span><br><span class="line">fs.writeFileSync(<span class="string">"./js/main.js"</span>, <span class="string">""</span>)</span><br><span class="line"></span><br><span class="line">process.exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给 jsdemo.js 加上执行权限<code>chmod +x ~/local/jsdemo.js</code></p>
+</li>
+<li><p><code>node ~/local/jsdemo.js zzz</code>，就可以看到 zzz 目录创建成功了</p>
+</li>
+<li><p>shebang<br>我们每次执行 ~/local/jsdemo.js 都要用 node 来执行，能不能做到不加 node 也能执行呢（也就是指定执行环境），可以，在 jsdemo.js 第一行加上这一句即可：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env node</span><br></pre></td></tr></table></figure>
+<p>然后你就可以直接用 ~/local/jsdemo.js zzz 了（省得输入 node 了）。<br>如果你已经把 ~/local 加入了 PATH，那么甚至可以直接输入 jsdemo.js zzz 来执行。<br>如果你再把 jsdemo.js 的后缀 .js 去掉，就可以直接 jsdemo zzz 了。</p>
+</li>
+</ol>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>squall1744</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://yoursite.com/2018/03/11/脚本/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/11/脚本/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/11/脚本/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2018/03/11/如何学习Linux命令行/">
+        如何学习Linux命令行 →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">叔叔和笑笑的博客</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>
