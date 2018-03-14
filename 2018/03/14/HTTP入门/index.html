@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>HTTP入门 | 叔叔和笑笑的博客</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="叔叔和笑笑的博客">
+
+  
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">叔叔和笑笑的博客</h1>
+            <h2 class="blog-description"></h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2018-03-14T13:29:35.000Z" itemprop="datePublished">
+          2018-03-14
+      </time>
+    
+    
+    | 
+    <a href='/tags/学习笔记/'>学习笔记</a>
+    
+    
+</span>
+    <h1 class="post-title">HTTP入门</h1>
+    <section class="post-content">
+      <p><br><br>上次介绍<a href="https://www.jianshu.com/p/f326f905e365" target="_blank" rel="noopener">如何学习Linux命令行</a>, 这次我们就来介绍介绍HTTP的入门知识吧, 这次大概会简单的介绍一下HTTP请求和响应里面包含哪些内容, 然后怎么用chrome查看请求头, 响应头, 算是HTTP最最最简单的入门知识吧</p>
+<hr>
+<h4 id="什么是HTTP"><a href="#什么是HTTP" class="headerlink" title="什么是HTTP"></a>什么是HTTP</h4><p><a href="https://baike.baidu.com/item/%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">超文本传输协议</a>（HTTP，HyperText Transfer Protocol)是<a href="https://baike.baidu.com/item/%E4%BA%92%E8%81%94%E7%BD%91" target="_blank" rel="noopener">互联网</a>上应用最为广泛的一种<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">网络协议</a>, 所有的www文件都必须遵守这个标准, HTTP是<a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E7%90%83%E8%B3%87%E8%A8%8A%E7%B6%B2" title="全球資訊網" target="_blank" rel="noopener">全球网络资讯</a>的數據通信的基礎</p>
+<p>简单来说, 当我们访问互联网时候, 就是通过http协议来让我们电脑和你访问的网站进行通讯的</p>
+<p>通常情况下, 我们访问一个网站的步骤大体上是这样的<br><img src="https://upload-images.jianshu.io/upload_images/8412690-42d1b6c7acf59a7b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="HTTP传输"></p>
+<ol>
+<li>我们在浏览器输入网址后, 浏览器会出现一个地址, 通常是<code>http://</code>或者<code>https://</code>开头的, 我们把这个叫做<strong>URL</strong></li>
+<li>通过URL地址,就可以确定我们是向哪个服务器发送<strong>HTTP请求</strong>, 之后HTTP请求就会发送到那个服务器了</li>
+<li>网站的服务器接收到HTTP请求后,根据HTTP请求内容返回对应的<strong>HTTP响应</strong>给我们的浏览器</li>
+<li>浏览器根据<strong>HTTP响应</strong>的内容生成对应网页</li>
+</ol>
+<p>那么到底URL是什么, HTTP请求有是什么, HTTP响应又是什么, 当我们搞懂这些东西后, HTTP就算是基本入门啦</p>
+<hr>
+<h4 id="URI和URL"><a href="#URI和URL" class="headerlink" title="URI和URL"></a>URI和URL</h4><p>通过上面的访问一个网站的步骤我们知道, 我们是通过URL来告诉浏览器应该发送HTTP请求给哪台服务器,(不然他怎么知道我们是想访问baidu还是google又或者是tencent呢), 那么URL到底是个什么东西呢？</p>
+<h5 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h5><p>URI：(Uniform Resource Identifier 的缩写，统一资源标识符),一种字符串文本标准, 这种文本主要是用来确定一个唯一资源的, URL是URI的一种, 就是说，URI 属于父类，而 URL 属于 URI 的子类</p>
+<h5 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h5><p>URL：(Uniform/Universal Resource Locator 的缩写，统一资源定位符)<br>上面我们说了URI是用来确定一个唯一资源的字符串文本标准,他能用来确定一个资源, 具有唯一性,那么在互联网领域, 我们就规定用URI的一个子集URL来表示我们要访问的资源具体放在哪里,。</p>
+<p>打个比方吧, 当我们访问百度这个网站, 请求就是通过百度的URL地址来定位百度的服务器在哪儿的, 这样就不会因为不知道百度服务器在哪儿,把请求发送到谷歌的服务器去</p>
+<h5 id="URL组成"><a href="#URL组成" class="headerlink" title="URL组成"></a>URL组成</h5><p>我们借用一下<strong>饥人谷方方老师</strong>的图来说明一下域名的组成</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8412690-01ad6869027696c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="域名组成"></p>
+<ul>
+<li><p>协议：<br>这个就是告诉浏览器, 我们通过什么协议来发送请求, 一般访问网站我们就是http或者https, 当然还有ftp之类的很多协议, 有兴趣的同学请自行google</p>
+</li>
+<li><p>域名<br>是由一串用点分隔的名字组成的<a href="https://baike.baidu.com/item/Internet" target="_blank" rel="noopener">Internet</a>上某一台<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA" target="_blank" rel="noopener">计算机</a>或<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84" target="_blank" rel="noopener">计算机组</a>的名称，用于在数据传输时标识计算机的电子方位</p>
+<p> 有一定计算机知识的同学肯定知道我们一般是通过IP地址定位网络上一台主机位置的, 但是由于IP地址不便于记忆等原因. 就产生了用域名这种具有文字意义的标示方法来标识网络上某台计算机的方法,通过<strong>DNS</strong>将域名与具体的IP地址进行关联, 就可以实现用域名来标示网络上某台计算机位置的功能了</p>
+<p> 至于IP相关的知识在这里就不讲了, 毕竟这是一个HTTP的入门教程, IP的话有兴趣的同学可以自行百度<strong>TCP/IP协议</strong>相关知识, 或者买一本<strong>《图解HTTP》</strong>自行研究</p>
+</li>
+<li><p>DNS<br>DNS 全名叫 Domain Name Server，中文俗称“域名服务器”，正如上面所讲，在网上辨别一台电脑的方法是利用 IP地址，但是 IP用数字表示，没有特殊的意义，很不好记，因此，我们一般会为网上的电脑取一个有某种含义又容易记忆域名, 比如baidu, 我们一般都直接输入<a href="http://www.baidu.com就好了" target="_blank" rel="noopener">www.baidu.com就好了</a>, 根本不会去记百度的IP地址。但是由于在 Internet 上真实辨认机器的还是IP，所以当使用者在浏览器中输入域名后，浏览器必须先到一台有域名和 IP 对应信息的主机去查询这台电脑的 IP，而这台被查询的主机，我们称它为 Domain Name Server，简称 DNS</p>
+</li>
+<li><p>路径<br><code>/</code>之后(包括’/‘)到<code>?</code>之前的内容, 不同的路径表示不同的位置, 服务器会根据不同的路径返回不同的内容, 这里我要强调一下, 这个路径虽然看起来很像windows电脑的路径, 但是实际上这两个没有什么关系, 最好别按windows文件路径来理解, 这里的路径就是表示不同的位置而已, 即使用<code>/hello.txt</code>这种路径也不代表返回的是txt文件, 返回什么完全是由后台程序员写的程序决定</p>
+</li>
+<li><p>查询参数<br><code>?</code>之后(包括<code>?</code>)到<code>#</code>之前的内容, 用于查询通常包含若干由等号连接的键值对组成, 每个之间由&amp;隔开例如<code>?a=1&amp;b=2&amp;c=3</code></p>
+</li>
+<li><p>锚点<br><code>#</code>及之后的内容, 锚点的作用就跟名字一样, 我们都知道锚是用来固定位置的, 那么锚点主要作用也是用来指定位置的, 通常我们用锚点来跳转到页面中的指定位置</p>
+</li>
+</ul>
+<hr>
+<h4 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h4><p>当我们在浏览器中输入URL地址后, 浏览器就会发送一条HTTP请求, 那么HTTP请求包含哪些内容呢, 下面我们先说一下怎么通过chrome浏览器查看HTTP请求和响应</p>
+<h5 id="如何通过chrome浏览器查看http请求和响应"><a href="#如何通过chrome浏览器查看http请求和响应" class="headerlink" title="如何通过chrome浏览器查看http请求和响应"></a>如何通过chrome浏览器查看http请求和响应</h5><p>1.在chrome浏览器中按键盘上的<code>F12</code>键, 就会出现下面截图右边的这个功能区, 然后点<code>Network</code><br><img src="https://upload-images.jianshu.io/upload_images/8412690-859c5cadcda245f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="开发者工具"></p>
+<ol>
+<li>在浏览器的地址栏输入<code>www.baidu.com</code>, 然后我们会发现我们的<code>Network</code>功能区出现了好多的文件一样的东西, 我们网上翻, 找到带有index字样的文件, 这个就是百度首页的请求响应文件<br><img src="https://upload-images.jianshu.io/upload_images/8412690-d119ed9b32a892af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Network"></li>
+</ol>
+<p>3.然后点击一下这个文件, 就会看到跟我下面的图一样的界面, Response Headers就是响应头, Request Headers就是请求头, Response就是响应内容, <strong>记得一定要点view source!!!!, 记得一定要点view source!!!!, 记得一定要点view source!!!!</strong><br><img src="https://upload-images.jianshu.io/upload_images/8412690-10b422b6de07393a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请求文件"></p>
+<h5 id="HTTP请求内容"><a href="#HTTP请求内容" class="headerlink" title="HTTP请求内容"></a>HTTP请求内容</h5><p>HTTP请求一般分为四部分, 我们拿图来说明, 我从网上找了个图啊<br>第一部分: 请求行, 图上的1, 2, 3<br>第二部分: 请求头, 图上的4<br>第三部分: 一个回车<br>第四部分: 请求体, 图上的5<br><img src="https://upload-images.jianshu.io/upload_images/8412690-504cb7494c12995b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="HTTP请求"></p>
+<ul>
+<li><p>请求行<br>这里面包含三个内容, 请求方法, 请求路径, HTTP协议及版本, 这里面特别说明一下, 请求路径是包含查询参数的, 但是不包含锚点<br>请求有哪些方法及这些方法的作用作用请自行百度, 这里就不展开了</p>
+</li>
+<li><p>请求头<br>请求头是由若干个键值对组成的, 描述了请求的要求参数, 如</p>
+<p>  内容|含义<br>  -|-<br>  Accept: image/jpeg, application/x-ms-application|接收的数据类型<br>  Content-Length: 112|请求体内容长度112字节<br> User-Agent: MOzilla/4.0| 用户代理类型</p>
+<p>具体内容可以参考下面这个文章<a href="http://blog.csdn.net/wkl305268748/article/details/78577785" target="_blank" rel="noopener">HTTP请求头分类</a></p>
+</li>
+<li><p>请求体<br>请求具体内容, 在chrome浏览器里查看请求的时候, 一般看不到请求体</p>
+</li>
+</ul>
+<hr>
+<h4 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h4><h5 id="HTTP响应内容"><a href="#HTTP响应内容" class="headerlink" title="HTTP响应内容"></a>HTTP响应内容</h5><p>当服务器接收到HTTP请求后, 会根据请求的具体内容返回响应, 我又从网上找了个图。。。</p>
+<p>HTTP响应跟请求一样, 也是分为四部分<br>第一部分: 响应行<br>第二部分: 响应头<br>第三部分: 回车<br>第四部分: 响应体</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8412690-8f1955ad1ae3129d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="HTTP响应"></p>
+<ul>
+<li><p>响应行<br>响应行包括HTTP版本协议, 状态码, 状态码描述</p>
+</li>
+<li><p>状态码<br>状态码简单来说就是响应对于请求做出何种反馈的代码, 通常我们分为以下几大类型</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>类别</th>
+<th>原因短语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1XX</td>
+<td>Informational 信息性状态码</td>
+<td>接收请求正在处理</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td>Success 成功状态状态码</td>
+<td>请求正常处理完毕</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td>Redirection 重定向状态码</td>
+<td>需要进行附加操作以完成请求, 意思就是要浏览器换个地方请求</td>
+</tr>
+<tr>
+<td>4XX</td>
+<td>Client Error 客户端错误状态码</td>
+<td>服务器无法处理请求, 意思就是说浏览器的请求错啦</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td>Server Error 服务器错误状态码</td>
+<td>服务器处理请求出错, 意思是说服务器自己出问题啦</td>
+</tr>
+</tbody>
+</table>
+<p>具体HTTP包含哪些, 请看下面这个链接<a href="https://zh.wikipedia.org/wiki/HTTP状态码" target="_blank" rel="noopener">HTTP状态吗</a></p>
+<ul>
+<li><p>响应头<br>这个部分跟请求头一样, 也是一堆键值对, 包含了响应的参数, 比如Content-Length表示响应内容长度<br>Content-Type表示响应内容类型等, 具体的也请大家自己研究吧</p>
+</li>
+<li><p>响应体<br>响应的具体内容, 比如返回一个html网页什么的</p>
+</li>
+</ul>
+<hr>
+<p>到这里HTTP入门部分算是讲完了, 其实也就是大概说了一下, 主要目的就是希望大家能对HTTP协议有个基本的认识, 更深层的内容请大家自己下来好好研究吧。</p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>squall1744</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://yoursite.com/2018/03/14/HTTP入门/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/14/HTTP入门/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/14/HTTP入门/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2018/03/14/HTML标签难点/">
+        ← HTML标签难点
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2018/03/11/脚本/">
+        脚本 →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">叔叔和笑笑的博客</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>
